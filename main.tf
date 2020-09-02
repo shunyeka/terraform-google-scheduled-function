@@ -56,7 +56,7 @@ resource "random_id" "suffix" {
 }
 
 module "main" {
-  source  = "terraform-google-modules/event-function/google"
+  source  = "github.com/terraform-google-modules/terraform-google-event-function"
   version = "~> 1.2"
 
   entry_point = var.function_entry_point
@@ -75,7 +75,7 @@ module "main" {
   available_memory_mb                = var.function_available_memory_mb
   bucket_force_destroy               = var.bucket_force_destroy
   bucket_labels                      = var.function_source_archive_bucket_labels
-  create_bucket                      = "false"
+  create_bucket                      = false
   bucket_name                        = var.bucket_name == "" ? "${var.project_id}-scheduled-function-${random_id.suffix.hex}" : var.bucket_name
   description                        = var.function_description
   environment_variables              = var.function_environment_variables
