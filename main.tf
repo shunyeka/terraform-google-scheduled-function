@@ -56,7 +56,7 @@ resource "random_id" "suffix" {
 }
 
 module "main" {
-  source  = "terraform-google-modules/event-function/google"
+  source  = "github.com/terraform-google-modules/terraform-google-event-function"
   version = "~> 1.2"
 
   entry_point = var.function_entry_point
